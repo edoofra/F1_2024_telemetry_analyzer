@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c793f26-1072-4550-ac17-74cbe58e9e06" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../src/main/resources/migrations/V1.1_CREATE_LAP_TIMES_TABLE.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/resources/migrations/V1.0_CREATE_SESSION_TABLE.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/resources/migrations/V1.0_CREATE_SESSION_TABLE.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/migrations/V1.1_CREATE_LAP_TIMES_TABLE.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/resources/migrations/V1.1_CREATE_LAP_TIMES_TABLE.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
