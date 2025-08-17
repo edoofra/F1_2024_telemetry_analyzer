@@ -12,3 +12,7 @@ CREATE TABLE IF NOT EXISTS lap (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (session_id) REFERENCES session(id) ON DELETE CASCADE
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_lap_session_id_lap_number ON lap(session_id, lap_number);
+CREATE INDEX IF NOT EXISTS idx_lap_session_id ON lap(session_id);
+CREATE INDEX IF NOT EXISTS idx_lap_lap_time_ms ON lap(lap_time_ms);
