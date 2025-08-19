@@ -1,0 +1,45 @@
+{
+  "groups": [
+    {
+      "name": "f1.telemetry.buffer",
+      "type": "com.edoofra.f1_telemetry_analyzer.config.TelemetryBufferConfig",
+      "sourceType": "com.edoofra.f1_telemetry_analyzer.config.TelemetryBufferConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "f1.telemetry.buffer.capacity",
+      "type": "java.lang.Integer",
+      "description": "The maximum number of telemetry packets the ring buffer can hold. Once this limit is reached, the oldest packets will be overwritten. Default: 10,000 packets",
+      "sourceType": "com.edoofra.f1_telemetry_analyzer.config.TelemetryBufferConfig"
+    },
+    {
+      "name": "f1.telemetry.buffer.enable-packet-size-stats",
+      "type": "java.lang.Boolean",
+      "description": "Whether to enable detailed packet size statistics. When enabled, tracks distribution of packet sizes for analysis. Default: false (disabled for performance)",
+      "sourceType": "com.edoofra.f1_telemetry_analyzer.config.TelemetryBufferConfig"
+    },
+    {
+      "name": "f1.telemetry.buffer.high-utilization-threshold",
+      "type": "java.lang.Double",
+      "description": "Threshold percentage for logging warnings when buffer utilization is high. When buffer usage exceeds this percentage, warnings will be logged. Default: 80% (0.8)",
+      "sourceType": "com.edoofra.f1_telemetry_analyzer.config.TelemetryBufferConfig"
+    },
+    {
+      "name": "f1.telemetry.buffer.operation-timeout-ms",
+      "type": "java.lang.Integer",
+      "description": "Maximum time in milliseconds to wait when buffer operations are blocked. This prevents indefinite blocking during high-load scenarios. Default: 100ms",
+      "sourceType": "com.edoofra.f1_telemetry_analyzer.config.TelemetryBufferConfig"
+    },
+    {
+      "name": "f1.telemetry.buffer.stats-interval",
+      "type": "java.lang.Integer",
+      "description": "Interval in seconds for logging buffer statistics. This determines how frequently buffer utilization metrics are logged. Default: 10 seconds",
+      "sourceType": "com.edoofra.f1_telemetry_analyzer.config.TelemetryBufferConfig"
+    }
+  ],
+  "hints": [],
+  "ignored": {
+    "properties": []
+  }
+}
