@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c793f26-1072-4550-ac17-74cbe58e9e06" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../src/main/resources/migrations/V1.1_CREATE_LAP_TIMES_TABLE.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/resources/migrations/V1.0_CREATE_SESSION_TABLE.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/resources/migrations/V1.0_CREATE_SESSION_TABLE.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +23,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/UPD_listener" />
+                    <option name="lastUsedInstant" value="1755424279" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/initialize_telemetry_persistence" />
                     <option name="lastUsedInstant" value="1755421862" />
@@ -54,7 +56,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/initialize__telemetry__persistence&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/UPD__listener&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -82,6 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1755418356909</updated>
       <workItem from="1755418358657" duration="617000" />
+      <workItem from="1755496573485" duration="59000" />
     </task>
     <servers />
   </component>
