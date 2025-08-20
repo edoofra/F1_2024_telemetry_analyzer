@@ -62,4 +62,53 @@ public final class BinaryDataUtils {
         int bits = getInt(data, offset);
         return Float.intBitsToFloat(bits);
     }
+
+    // Alias methods for F1 telemetry parsing compatibility
+    
+    /**
+     * Reads an unsigned 8-bit integer from byte array.
+     * 
+     * @param data   the byte array to read from
+     * @param offset the starting position in the array
+     * @return the unsigned 8-bit integer value (0-255)
+     */
+    public static int readUInt8(byte[] data, int offset) {
+        return data[offset] & 0xFF;
+    }
+    
+    /**
+     * Reads an unsigned 16-bit integer from byte array (little-endian).
+     * Alias for getUnsignedShort().
+     * 
+     * @param data   the byte array to read from
+     * @param offset the starting position in the array
+     * @return the unsigned 16-bit integer value
+     */
+    public static int readUInt16(byte[] data, int offset) {
+        return getUnsignedShort(data, offset);
+    }
+    
+    /**
+     * Reads an unsigned 32-bit integer from byte array (little-endian).
+     * Returns as long to handle full unsigned range.
+     * 
+     * @param data   the byte array to read from
+     * @param offset the starting position in the array
+     * @return the unsigned 32-bit integer value as long
+     */
+    public static long readUInt32(byte[] data, int offset) {
+        return getInt(data, offset) & 0xFFFFFFFFL;
+    }
+    
+    /**
+     * Reads a 32-bit float from byte array (little-endian).
+     * Alias for getFloat().
+     * 
+     * @param data   the byte array to read from
+     * @param offset the starting position in the array
+     * @return the 32-bit float value
+     */
+    public static float readFloat(byte[] data, int offset) {
+        return getFloat(data, offset);
+    }
 }

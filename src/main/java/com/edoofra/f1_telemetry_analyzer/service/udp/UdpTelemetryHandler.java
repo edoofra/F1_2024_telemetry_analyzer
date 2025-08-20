@@ -1,6 +1,6 @@
 package com.edoofra.f1_telemetry_analyzer.service.udp;
 
-import com.edoofra.f1_telemetry_analyzer.service.parsing.HeaderParsingService;
+import com.edoofra.f1_telemetry_analyzer.service.parsing.HeaderParser;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UdpTelemetryHandler {
 
-    private final HeaderParsingService headerParsingService;
+    private final HeaderParser headerParser;
     private final TelemetryBufferManager telemetryBufferManager;
     private final MeterRegistry meterRegistry;
     
@@ -27,10 +27,10 @@ public class UdpTelemetryHandler {
     private final Counter packetsProcessedCounter;
     private final Counter packetsErrorCounter;
     
-    public UdpTelemetryHandler(HeaderParsingService headerParsingService, 
-                              TelemetryBufferManager telemetryBufferManager,
-                              MeterRegistry meterRegistry) {
-        this.headerParsingService = headerParsingService;
+    public UdpTelemetryHandler(HeaderParser headerParser,
+                               TelemetryBufferManager telemetryBufferManager,
+                               MeterRegistry meterRegistry) {
+        this.headerParser = headerParser;
         this.telemetryBufferManager = telemetryBufferManager;
         this.meterRegistry = meterRegistry;
         

@@ -25,4 +25,6 @@ public interface SessionRepository extends JpaRepository<Session, UUID> {
 
     @Query("SELECT s FROM Session s WHERE s.type = :type AND s.createdAt >= :since ORDER BY s.createdAt DESC")
     List<Session> findRecentSessionsByType(@Param("type") String type, @Param("since") LocalDateTime since);
+    
+    Optional<Session> findByGameSessionId(String gameSessionId);
 }

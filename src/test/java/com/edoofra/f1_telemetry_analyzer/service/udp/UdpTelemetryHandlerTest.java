@@ -1,8 +1,6 @@
 package com.edoofra.f1_telemetry_analyzer.service.udp;
 
-import com.edoofra.f1_telemetry_analyzer.service.parsing.HeaderParsingService;
-import com.edoofra.f1_telemetry_analyzer.service.udp.TelemetryBufferManager;
-import com.edoofra.f1_telemetry_analyzer.service.udp.UdpTelemetryHandler;
+import com.edoofra.f1_telemetry_analyzer.service.parsing.HeaderParser;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
@@ -26,7 +24,7 @@ import static org.mockito.Mockito.*;
 class UdpTelemetryHandlerTest {
 
     @Mock
-    private HeaderParsingService headerParsingService;
+    private HeaderParser headerParser;
     
     @Mock
     private TelemetryBufferManager telemetryBufferManager;
@@ -39,7 +37,7 @@ class UdpTelemetryHandlerTest {
     @BeforeEach
     void setUp() {
         meterRegistry = new SimpleMeterRegistry();
-        handler = new UdpTelemetryHandler(headerParsingService, telemetryBufferManager, meterRegistry);
+        handler = new UdpTelemetryHandler(headerParser, telemetryBufferManager, meterRegistry);
     }
 
     @Nested

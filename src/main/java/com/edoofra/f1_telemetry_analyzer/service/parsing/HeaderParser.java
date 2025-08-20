@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class HeaderParsingService {
+public final class HeaderParser {
 
     public static final int HEADER_SIZE = 24;
 
@@ -21,7 +21,7 @@ public class HeaderParsingService {
      * @param data Raw packet data
      * @return Parsed header object, or null if packet is too small
      */
-    public TelemetryPacketHeader parseHeader(byte[] data) {
+    public static TelemetryPacketHeader parseHeader(byte[] data) {
         if (data.length < HEADER_SIZE) {
             log.warn("Packet too small for header parsing: {} bytes (minimum {})", data.length, HEADER_SIZE);
             return null;

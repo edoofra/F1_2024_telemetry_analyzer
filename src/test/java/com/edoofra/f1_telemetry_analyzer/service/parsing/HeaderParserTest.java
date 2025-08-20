@@ -10,14 +10,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("HeaderParsingService Tests")
-class HeaderParsingServiceTest {
+@DisplayName("HeaderParser Tests")
+class HeaderParserTest {
 
-    private HeaderParsingService headerParsingService;
+    private HeaderParser headerParser;
 
     @BeforeEach
     void setUp() {
-        headerParsingService = new HeaderParsingService();
+        headerParser = new HeaderParser();
     }
 
     @Test
@@ -27,7 +27,7 @@ class HeaderParsingServiceTest {
         byte[] smallPacket = new byte[10]; // Less than 24 bytes
         
         // Act
-        TelemetryPacketHeader result = headerParsingService.parseHeader(smallPacket);
+        TelemetryPacketHeader result = headerParser.parseHeader(smallPacket);
         
         // Assert
         assertNull(result);
@@ -40,7 +40,7 @@ class HeaderParsingServiceTest {
         byte[] headerData = createValidHeaderData();
         
         // Act
-        TelemetryPacketHeader result = headerParsingService.parseHeader(headerData);
+        TelemetryPacketHeader result = headerParser.parseHeader(headerData);
         
         // Assert
         assertNotNull(result);
@@ -64,7 +64,7 @@ class HeaderParsingServiceTest {
         headerData[5] = 3; // Event packet ID
         
         // Act
-        TelemetryPacketHeader result = headerParsingService.parseHeader(headerData);
+        TelemetryPacketHeader result = headerParser.parseHeader(headerData);
         
         // Assert
         assertNotNull(result);
@@ -110,7 +110,7 @@ class HeaderParsingServiceTest {
         headerData[23] = (byte) 0xFF;
         
         // Act
-        TelemetryPacketHeader result = headerParsingService.parseHeader(headerData);
+        TelemetryPacketHeader result = headerParser.parseHeader(headerData);
         
         // Assert
         assertNotNull(result);
@@ -133,7 +133,7 @@ class HeaderParsingServiceTest {
         byte[] headerData = new byte[24]; // All bytes initialized to 0
         
         // Act
-        TelemetryPacketHeader result = headerParsingService.parseHeader(headerData);
+        TelemetryPacketHeader result = headerParser.parseHeader(headerData);
         
         // Assert
         assertNotNull(result);
@@ -153,11 +153,11 @@ class HeaderParsingServiceTest {
     @DisplayName("Should handle exact header size packet")
     void shouldHandleExactHeaderSizePacket() {
         // Arrange
-        byte[] exactSizePacket = new byte[HeaderParsingService.HEADER_SIZE];
+        byte[] exactSizePacket = new byte[HeaderParser.HEADER_SIZE];
         fillValidHeaderData(exactSizePacket, 0);
         
         // Act
-        TelemetryPacketHeader result = headerParsingService.parseHeader(exactSizePacket);
+        TelemetryPacketHeader result = headerParser.parseHeader(exactSizePacket);
         
         // Assert
         assertNotNull(result);
@@ -171,7 +171,7 @@ class HeaderParsingServiceTest {
         fillValidHeaderData(largerPacket, 0);
         
         // Act
-        TelemetryPacketHeader result = headerParsingService.parseHeader(largerPacket);
+        TelemetryPacketHeader result = headerParser.parseHeader(largerPacket);
         
         // Assert
         assertNotNull(result);

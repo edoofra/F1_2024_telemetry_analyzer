@@ -1,6 +1,7 @@
 package com.edoofra.f1_telemetry_analyzer.service.processing;
 
 import com.edoofra.f1_telemetry_analyzer.config.TelemetryProcessingConfig;
+import com.edoofra.f1_telemetry_analyzer.service.parsing.TelemetryParsingService;
 import com.edoofra.f1_telemetry_analyzer.service.udp.TelemetryBufferManager;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -27,6 +28,7 @@ public class TelemetryProcessingService {
 
     private final TelemetryBufferManager bufferManager;
     private final TelemetryProcessingConfig config;
+    private final TelemetryParsingService parsingService;
 
     private ExecutorService processingExecutor;
     private final AtomicBoolean running = new AtomicBoolean(false);
@@ -112,33 +114,26 @@ public class TelemetryProcessingService {
     }
 
     /**
-     * Processes a single telemetry packet.
-     * This is where the actual packet parsing and session management will happen.
-     * For now, it's a placeholder that demonstrates the processing pipeline.
+     * Processes a single telemetry packet using the parsing service.
+     * 
+     * This method:
+     * 1. Delegates to TelemetryParsingService for packet parsing
+     * 2. Handles any errors gracefully to avoid stopping the processing pipeline
+     * 3. Logs processing results for monitoring
      */
     private void processPacket(byte[] packet, int threadId) {
         log.trace("Thread {} processing packet of {} bytes", threadId, packet.length);
 
         try {
-            // TODO: Add actual packet processing logic here
-            // Examples of what will go here:
-            // 1. Parse packet header to determine packet type
-            // 2. Route to appropriate parser (session data, lap data, car telemetry, etc.)
-            // 3. Update session state
-            // 4. Persist data if needed
-            // 5. Notify WebSocket listeners
-
-            // For now, just log that we processed it
-            if (log.isTraceEnabled()) {
-                log.trace("Successfully processed packet: first 4 bytes = [{}, {}, {}, {}]",
-                        packet.length > 0 ? packet[0] : 0,
-                        packet.length > 1 ? packet[1] : 0,
-                        packet.length > 2 ? packet[2] : 0,
-                        packet.length > 3 ? packet[3] : 0);
+            boolean success = parsingService.parsePacket(packet);
+            if (success) {
+                log.trace("Thread {} successfully processed packet", threadId);
+            } else {
+                log.debug("Thread {} - packet processing failed or unsupported packet type", threadId);
             }
 
         } catch (Exception e) {
-            log.error("Failed to process telemetry packet", e);
+            log.error("Thread {} - Failed to process telemetry packet", threadId, e);
             // Don't rethrow - we want to continue processing other packets
         }
     }
