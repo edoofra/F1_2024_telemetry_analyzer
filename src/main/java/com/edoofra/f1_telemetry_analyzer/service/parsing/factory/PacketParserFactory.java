@@ -68,33 +68,7 @@ public class PacketParserFactory {
         
         return strategy;
     }
-    
-    /**
-     * Report a parsing error for statistics.
-     */
-    public void reportParsingError() {
-        totalErrors.incrementAndGet();
-    }
-    
-    /**
-     * Get parsing statistics for monitoring.
-     */
-    public TelemetryParsingService.ParsingStats getParsingStats() {
-        // Create array of parsing counts by packet type
-        int maxPacketId = strategyMap.keySet().stream().mapToInt(Integer::intValue).max().orElse(0);
-        long[] parsedByType = new long[maxPacketId + 1];
-        
-        for (Map.Entry<Integer, AtomicLong> entry : parsingCounters.entrySet()) {
-            parsedByType[entry.getKey()] = entry.getValue().get();
-        }
-        
-        return new TelemetryParsingService.ParsingStats(
-            totalParsed.get(),
-            totalErrors.get(),
-            parsedByType
-        );
-    }
-    
+
     /**
      * Get all supported packet IDs.
      */
