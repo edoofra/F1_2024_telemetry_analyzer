@@ -11,14 +11,13 @@ package com.edoofra.f1_telemetry_analyzer.model;
  * @param totalDropped  the total number of packets dropped due to buffer overflow
  * @param dropRate      the percentage of packets dropped (0-100)
  */
-public record BufferStats(
-        int currentSize,
-        int capacity,
-        long totalReceived,
-        long totalDropped,
-        double dropRate
+public record BufferStats(int currentSize,
+                          int capacity,
+                          long totalReceived,
+                          long totalDropped,
+                          double dropRate
 ) {
-    
+
     /**
      * Checks if the buffer is currently empty.
      *
@@ -27,7 +26,7 @@ public record BufferStats(
     public boolean isEmpty() {
         return currentSize == 0;
     }
-    
+
     /**
      * Checks if the buffer is currently at full capacity.
      *
@@ -36,7 +35,7 @@ public record BufferStats(
     public boolean isFull() {
         return currentSize == capacity;
     }
-    
+
     /**
      * Calculates the current buffer utilization as a percentage.
      *
@@ -45,7 +44,7 @@ public record BufferStats(
     public double utilizationPercentage() {
         return (double) currentSize / capacity * 100.0;
     }
-    
+
     /**
      * Calculates the success rate of packet processing.
      *
@@ -57,7 +56,7 @@ public record BufferStats(
         }
         return 100.0 - dropRate;
     }
-    
+
     /**
      * Gets the number of available slots in the buffer.
      *
