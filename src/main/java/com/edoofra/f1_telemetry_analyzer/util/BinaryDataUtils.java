@@ -62,4 +62,15 @@ public final class BinaryDataUtils {
         int bits = getInt(data, offset);
         return Float.intBitsToFloat(bits);
     }
+
+    /**
+     * Reads an unsigned 32-bit integer from byte array (little-endian) as a long.
+     *
+     * @param data   the byte array to read from
+     * @param offset the starting position in the array
+     * @return the unsigned 32-bit integer value as a long
+     */
+    public static long getUnsignedInt(byte[] data, int offset) {
+        return Integer.toUnsignedLong(getInt(data, offset));
+    }
 }

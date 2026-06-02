@@ -13,7 +13,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class HeaderParsingService {
 
-    public static final int HEADER_SIZE = 24;
+    // F1 25 header layout (29 bytes):
+    // uint16 packetFormat, uint8 gameYear, uint8 gameMajorVersion, uint8 gameMinorVersion,
+    // uint8 packetVersion, uint8 packetId, uint64 sessionUID, float sessionTime,
+    // uint32 frameIdentifier, uint32 overallFrameIdentifier, uint8 playerCarIndex, uint8 secondaryPlayerCarIndex
+    public static final int HEADER_SIZE = 29;
 
     /**
      * Parses the header from a raw telemetry packet.
@@ -30,15 +34,17 @@ public class HeaderParsingService {
         try {
             return TelemetryPacketHeader.builder()
                     .withPacketFormat(BinaryDataUtils.getUnsignedShort(data, 0))
-                    .withGameMajorVersion(data[2] & 0xFF)
-                    .withGameMinorVersion(data[3] & 0xFF)
-                    .withPacketVersion(data[4] & 0xFF)
-                    .withPacketId(data[5] & 0xFF)
-                    .withSessionUID(BinaryDataUtils.getLong(data, 6))
-                    .withSessionTime(BinaryDataUtils.getFloat(data, 14))
-                    .withFrameIdentifier(BinaryDataUtils.getInt(data, 18))
-                    .withPlayerCarIndex(data[22] & 0xFF)
-                    .withSecondaryPlayerCarIndex(data[23] & 0xFF)
+                    .withGameYear(data[2] & 0xFF)
+                    .withGameMajorVersion(data[3] & 0xFF)
+                    .withGameMinorVersion(data[4] & 0xFF)
+                    .withPacketVersion(data[5] & 0xFF)
+                    .withPacketId(data[6] & 0xFF)
+                    .withSessionUID(BinaryDataUtils.getLong(data, 7))
+                    .withSessionTime(BinaryDataUtils.getFloat(data, 15))
+                    .withFrameIdentifier(BinaryDataUtils.getInt(data, 19))
+                    .withOverallFrameIdentifier(BinaryDataUtils.getInt(data, 23))
+                    .withPlayerCarIndex(data[27] & 0xFF)
+                    .withSecondaryPlayerCarIndex(data[28] & 0xFF)
                     .build();
 
         } catch (Exception e) {

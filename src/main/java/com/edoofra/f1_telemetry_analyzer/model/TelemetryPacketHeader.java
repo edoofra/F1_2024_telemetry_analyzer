@@ -20,6 +20,7 @@ import lombok.ToString;
  */
 @Builder(toBuilder = true, setterPrefix = "with")
 public record TelemetryPacketHeader(int packetFormat,
+                                    int gameYear,
                                     int gameMajorVersion,
                                     int gameMinorVersion,
                                     int packetVersion,
@@ -27,6 +28,7 @@ public record TelemetryPacketHeader(int packetFormat,
                                     long sessionUID,
                                     float sessionTime,
                                     int frameIdentifier,
+                                    int overallFrameIdentifier,
                                     int playerCarIndex,
                                     int secondaryPlayerCarIndex) {
 }

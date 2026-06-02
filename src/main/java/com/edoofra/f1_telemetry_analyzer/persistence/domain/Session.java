@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -20,13 +19,14 @@ import java.util.UUID;
 public class Session {
 
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
     @Column(name = "game_session_id", unique = true)
     private String gameSessionId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private SessionTypeEnum type;
 
@@ -35,6 +35,27 @@ public class Session {
 
     @Column(name = "weather")
     private String weather;
+
+    @Column(name = "track_temperature")
+    private Integer trackTemperature;
+
+    @Column(name = "air_temperature")
+    private Integer airTemperature;
+
+    @Column(name = "safety_car_status")
+    private Integer safetyCarStatus;
+
+    @Column(name = "num_safety_car_periods")
+    private Integer numSafetyCarPeriods;
+
+    @Column(name = "num_virtual_safety_car_periods")
+    private Integer numVirtualSafetyCarPeriods;
+
+    @Column(name = "num_red_flag_periods")
+    private Integer numRedFlagPeriods;
+
+    @Column(name = "game_version")
+    private String gameVersion;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
